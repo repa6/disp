@@ -26,7 +26,7 @@
   // chart title
   var chart_title = 'Lake & Air Temperature';
   // y axis title
-  var y_axis_title = 'Values';
+  var y_axis_title = 'C°';
 
   // user's timezone offset
   var my_offset = new Date().getTimezoneOffset();
@@ -78,7 +78,7 @@
         type: 'datetime',
         title: { text: 'Date' }
       },
-      yAxis: { title: { text: Celsius Degrees } },
+      yAxis: { title: { text: y_axis_title } },
       exporting: { enabled: false },
       legend: { enabled: false },
       credits: {
