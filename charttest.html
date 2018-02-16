@@ -25,7 +25,7 @@ var channelsLoaded = 0;
 var channelKeys =[];
 //Change TO: display two fields from the same channel from a Rain gauge - 15min counts, and total counts
 //  src="http://api.thingspeak.com/channels/8652/charts/3?width=1300&height=520&results=1000&dynamic=false&title=15minTotals%20(0.5mm)" ></iframe>
-channelKeys.push({channelNumber:264486, name:'Heating States',key:'',
+channelKeys.push({channelNumber:264486, name:'Heating States',key:'8SUKRVO1YUBDBLH8',
    fieldList:[{field:1,axis:'C'},{field:2,axis:'C'},{field:3,axis:'C'},{field:4,axis:'R'}]});
     
 // user's timezone offset
@@ -197,8 +197,7 @@ $(document).ready(function()
 		},
     title: {	text: ''},
 		plotOptions: {
-		  line: {
-        gapSize:5
+		  line: {        gapSize:5
 				//color: '#d62020'
 				//  },
 				//  bar: {
@@ -207,12 +206,10 @@ $(document).ready(function()
 				//  column: {
 			},
 			series: {
-			  marker: {
-				  radius: 2
-				},
+			  	marker: { radius: 2},
 				animation: true,
 				step: false,
-        turboThrehold:1000,
+        			turboThrehold:1000,
 				borderWidth: 0
 			}
 		},
@@ -235,15 +232,10 @@ $(document).ready(function()
         hour: '%l %p',
         minute: '%l:%M %p'
       },
-      title: {
-        text: 'LeftAxis'
-			}
-		},
-		yAxis: [{
-            title: {
-                text: 'RainGauge Total (0.01")'
-            },
-            id: 'R'
+      	title: {text: 'LeftAxis'}	},
+	yAxis: [{  title: 
+		{ text: 'RainGauge Total (0.01")' },
+            	id: 'R'
     }, {
             title: {
                 text: '15min counts (0.01")'
