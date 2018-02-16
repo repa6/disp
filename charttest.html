@@ -1,30 +1,4 @@
 
-Skip to content
-This repository
-
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-
-    @repa6
-
-6
-14
-
-    12
-
-neilh10/thingspeakmultichannel-highcharts
-Code
-Issues 0
-Pull requests 1
-Projects 0
-Wiki
-Insights
-thingspeakmultichannel-highcharts/ThingSpeakMultichannel001.html
-b8238f4 on Feb 13 2014
-@neilh10 neilh10 Update ThingSpeakMultichannel001.html
-453 lines (433 sloc) 19.2 KB
 <!DOCTYPE html>
 <html>
   <head>
@@ -51,8 +25,8 @@ var channelsLoaded = 0;
 var channelKeys =[];
 //Change TO: display two fields from the same channel from a Rain gauge - 15min counts, and total counts
 //  src="http://api.thingspeak.com/channels/8652/charts/3?width=1300&height=520&results=1000&dynamic=false&title=15minTotals%20(0.5mm)" ></iframe>
-channelKeys.push({channelNumber:8652, name:'RainGauge',key:'EAEX6922YVUKP3IP',
-   fieldList:[{field:3,axis:'C'},{field:7,axis:'R'}]});
+channelKeys.push({channelNumber:264486, name:'Heating States',key:'',
+   fieldList:[{field:1,axis:'C'},{field:2,axis:'C'},{field:3,axis:'C'},{field:4,axis:'R'}]});
     
 // user's timezone offset
 var myOffset = new Date().getTimezoneOffset();
@@ -72,8 +46,7 @@ function HideAll(){
     dynamicChart.series[index].hide();
     //window.console && console.log('Series Number:',index,' Name:',dynamicChart.series[index].name);
   }
-  //});
-            
+  //});            
 }
       
       //  This is where the chart is generated.
@@ -201,9 +174,7 @@ $(document).ready(function()
                     //window.console && console.log('field index:',fieldIndex);
                     //window.console && console.log('update series name:',dynamicChart.series[chartSeriesName].name);
                     //window.console && console.log('channel keys name:',channelKeys[channelIndex].fieldList[fieldIndex].name);
-                  }
-                  
-                  
+                  } 
                 });
                })(channelIndex);
               }
@@ -214,40 +185,17 @@ $(document).ready(function()
 			}
 		},
 		rangeSelector: {
-			buttons: [{
-				count: 30,
-				type: 'minute',
-				text: '30M'
-			}, {
-				count: 12,
-				type: 'hour',
-				text: '12H'
-      }, {
-				count: 1,
-				type: 'day',
-				text: 'D'
-      }, {
-				count: 1,
-				type: 'week',
-				text: 'W'
-      }, {
-				count: 1,
-				type: 'month',
-				text: 'M'
-      }, {
-				count: 1,
-				type: 'year',
-				text: 'Y'
-			}, {
-				type: 'all',
-				text: 'All'
-			}],
+			buttons: [{count: 30,	type: 'minute',	text: '30M'}, 
+				  {count: 12,	type: 'hour',	text: '12H'}, 
+				  {count: 1,	type: 'day',	text: 'D'}, 
+				  {count: 1,	type: 'week',	text: 'W'}, 
+				  {count: 1,	type: 'month',	text: 'M'}, 
+				  {count: 1,	type: 'year',	text: 'Y'}, 
+				  {type: 'all',			text: 'All'}],
 			inputEnabled: true,
 			selected: 4  //Change to 4th button as default
 		},
-    title: {
-			text: ''
-		},
+    title: {	text: ''},
 		plotOptions: {
 		  line: {
         gapSize:5
@@ -468,18 +416,3 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
     </div>
   </body>
 </html>
-
-    © 2018 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Help
-
-    Contact GitHub
-    API
-    Training
-    Shop
-    Blog
-    About
-
