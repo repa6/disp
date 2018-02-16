@@ -8,29 +8,27 @@
     <script src="http://code.highcharts.com/stock/highstock.js"></script>
     <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
     <script src="https://rawgithub.com/highslide-software/export-csv/master/export-csv.js"></script>
-    <script type="text/javascript">
-      
+	  
+    <script type="text/javascript">      
       // Webpage Javascript to chart multiple ThingSpeak channels on two axis with navigator, load historical data, and export cvs data.
       // Public Domain, by turgo.
       //  The charting library is called HighStock.  It is awesome!  HighSoft, the owners say, 
       //   "Do you want to use Highstock for a personal or non-profit project? Then you can use Highchcarts for 
       //   free under the  Creative Commons Attribution-NonCommercial 3.0 License. "
+      // http://forum.arduino.cc/index.php?topic=213058.msg1560990#msg1560990
 var dynamicChart;
 var channelsLoaded = 0;
 // put your ThingSpeak Channel#, Channel Name, and API keys here.
 // fieldList shows which field you want to load, and which axis to display that field on, 
 // the 'T' Temperature left axis, or the 'O' Other right axis.
 var channelKeys =[];
-channelKeys.push({channelNumber:9, name:'Hans my_house',key:'XXXXXXXXXXXXXXXX',
-                  fieldList:[{field:1,axis:'O'},{field:2,axis:'T'}]});
-channelKeys.push({channelNumber:5683, name:'Sam Rogers Solar System',key:'XXXXXXXXXXXXXXXX',
-   fieldList:[{field:1,axis:'T'},{field:2,axis:'T'},{field:3,axis:'T'},{field:4,axis:'T'},{field:5,axis:'T'},{field:6,axis:'T'}]});
-channelKeys.push({channelNumber:9354, name:'CRYSTAL CITY WEATHER Fault',key:'XXXXXXXXXXXXXXXX',
-   fieldList:[{field:1,axis:'T'},{field:2,axis:'O'},{field:3,axis:'O'},{field:4,axis:'O'},{field:5,axis:'O'},{field:6,axis:'O'}]});
+//Change TO: display two fields from the same channel from a Rain gauge - 15min counts, and total counts
+//  src="http://api.thingspeak.com/channels/8652/charts/3?width=1300&height=520&results=1000&dynamic=false&title=15minTotals%20(0.5mm)" ></iframe>
+channelKeys.push({channelNumber:264486, name:'Heating States',key:'8SUKRVO1YUBDBLH8',
+   fieldList:[{field:5,axis:'C'},{field:6,axis:'C'},{field:7,axis:'C'},{field:8,axis:'C'}]});
     
 // user's timezone offset
 var myOffset = new Date().getTimezoneOffset();
-
 // converts date format from JSON
 function getChartDate(d) {
     // get the data using javascript's date object (year, month, day, hour, minute, second)
@@ -38,7 +36,6 @@ function getChartDate(d) {
     // offset in minutes is converted to milliseconds and subtracted so that chart's x-axis is correct
     return Date.UTC(d.substring(0,4), d.substring(5,7)-1, d.substring(8,10), d.substring(11,13), d.substring(14,16), d.substring(17,19)) - (myOffset * 60000);
 }
-
       // Hide all series, via 'Hide All' button.  Then user can click on serries name in legent to show series of interest.      
 function HideAll(){
   for (var index=0; index<dynamicChart.series.length; index++)  // iterate through each series
@@ -48,8 +45,7 @@ function HideAll(){
     dynamicChart.series[index].hide();
     //window.console && console.log('Series Number:',index,' Name:',dynamicChart.series[index].name);
   }
-  //});
-            
+  //});            
 }
       
       //  This is where the chart is generated.
@@ -177,9 +173,7 @@ $(document).ready(function()
                     //window.console && console.log('field index:',fieldIndex);
                     //window.console && console.log('update series name:',dynamicChart.series[chartSeriesName].name);
                     //window.console && console.log('channel keys name:',channelKeys[channelIndex].fieldList[fieldIndex].name);
-                  }
-                  
-                  
+                  } 
                 });
                })(channelIndex);
               }
@@ -190,43 +184,19 @@ $(document).ready(function()
 			}
 		},
 		rangeSelector: {
-			buttons: [{
-				count: 30,
-				type: 'minute',
-				text: '30M'
-			}, {
-				count: 12,
-				type: 'hour',
-				text: '12H'
-      }, {
-				count: 1,
-				type: 'day',
-				text: 'D'
-      }, {
-				count: 1,
-				type: 'week',
-				text: 'W'
-      }, {
-				count: 1,
-				type: 'month',
-				text: 'M'
-      }, {
-				count: 1,
-				type: 'year',
-				text: 'Y'
-			}, {
-				type: 'all',
-				text: 'All'
-			}],
+			buttons: [{count: 30,	type: 'minute',	text: '30M'}, 
+				  {count: 12,	type: 'hour',	text: '12H'}, 
+				  {count: 1,	type: 'day',	text: 'D'}, 
+				  {count: 1,	type: 'week',	text: 'W'}, 
+				  {count: 1,	type: 'month',	text: 'M'}, 
+				  {count: 1,	type: 'year',	text: 'Y'}, 
+				  {type: 'all',			text: 'All'}],
 			inputEnabled: true,
-			selected: 1
+			selected: 4  //Change to 4th button as default
 		},
-    title: {
-			text: ''
-		},
+    title: {	text: ''},
 		plotOptions: {
-		  line: {
-        gapSize:5
+		  line: {        gapSize:5
 				//color: '#d62020'
 				//  },
 				//  bar: {
@@ -235,19 +205,17 @@ $(document).ready(function()
 				//  column: {
 			},
 			series: {
-			  marker: {
-				  radius: 2
-				},
+			  	marker: { radius: 2},
 				animation: true,
 				step: false,
-        turboThrehold:1000,
+        			turboThrehold:1000,
 				borderWidth: 0
 			}
 		},
     tooltip: {
       valueDecimals: 1,
-      valueSuffix: '°F',
-      xDateFormat:'%Y-%m-%d<br/>%1:%M:%S %p'
+      valueSuffix: '(0.01")',
+      xDateFormat:'%Y-%m-%d<br/>%H:%M:%S %p' //bug fix
 			// reformat the tooltips so that local times are displayed
 			//formatter: function() {
       //var d = new Date(this.x + (myOffset*60000));
@@ -263,21 +231,10 @@ $(document).ready(function()
         hour: '%l %p',
         minute: '%l:%M %p'
       },
-      title: {
-        text: 'test'
-			}
-		},
-		yAxis: [{
-            title: {
-                text: 'Temperature °F'
-            },
-            id: 'T'
-    }, {
-            title: {
-                text: 'Other'
-            },
-            opposite: true,
-            id: 'O'
+      	title: {text: 'LeftAxis'}	},
+	yAxis: [{  title: 
+		{ text: 'State' },
+            	id: 'C'
     }],
 		exporting: {
 		  enabled: true,
@@ -297,7 +254,6 @@ $(document).ready(function()
     series: []
     //series: [{data:[[getChartDate("2013-06-16T00:32:40Z"),75]]}]      
 	};
-
 	// add all Channel data to the chart
   for (var channelIndex=0; channelIndex<channelKeys.length; channelIndex++)  // iterate through each channel
   {
@@ -314,10 +270,8 @@ $(document).ready(function()
 	// set chart labels here so that decoding occurs properly
 	//chartOptions.title.text = data.channel.name;
 	chartOptions.xAxis.title.text = 'Date';
-
 	// draw the chart
   dynamicChart = new Highcharts.StockChart(chartOptions);
-
   // update series number to account for the navigator series (The historical series at the bottom) which is the first series.
   for (var channelIndex=0; channelIndex<channelKeys.length; channelIndex++)  // iterate through each channel
   {
@@ -355,7 +309,6 @@ function loadOneChannel(){
   var channelIndex = selectedChannel.selectedIndex;
   loadChannelHistory(channelIndex,channelKeys[channelIndex].channelNumber,channelKeys[channelIndex].key,channelKeys[channelIndex].fieldList,0,maxLoads); 
 } 
-
 // load next 8000 points from a ThingSpeak channel and addPoints to a series
 function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sentNumLoads,maxLoads) {
    var numLoads=sentNumLoads
@@ -408,9 +361,9 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
      if (numLoads<maxLoads) {loadChannelHistory(channelIndex,channelNumber,key,fieldList,numLoads,maxLoads);}
 	 });
 }
-
   </script>
-    <title>ThingSpeakMultichannel</title>
+  	<title>Heating States</title>    
+
   </head>
   <body style="                      background-color: white;">
     <div id="chart-container" style="height: 600px;"><br>
