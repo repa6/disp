@@ -14,14 +14,7 @@
       //   "Do you want to use Highstock for a personal or non-profit project? Then you can use Highchcarts for 
       //   free under the  Creative Commons Attribution-NonCommercial 3.0 License. "
       // http://forum.arduino.cc/index.php?topic=213058.msg1560990#msg1560990
-      
-// Add the background image to the container
-Highcharts.wrap(Highcharts.Chart.prototype, 'getContainer', function (proceed) {
-   proceed.call(this);
-   this.container.style.background =
-      'url(http://www.highcharts.com/samples/graphics/sand.png)';
-});
-      
+       
 var dynamicChart;
 var channelsLoaded = 0;
 // put your ThingSpeak Channel#, Channel Name, and API keys here.
@@ -345,10 +338,10 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
 
   </head>
   <body style="                      background-color: white;">
-    <div id="chart-container" style="height: 600px;"><br>
+    <div id="chart-container" style="height: 600px; background-image: url('http://www.highcharts.com/samples/graphics/sand.png')"><br>
       Highstock Chart Here<br>
     </div>
-    <div id="below chart"> <button style="width: 89px; margin-top: -18px;" value="Hide All"
+    <div id="below chart" style="background-image: url('http://www.highcharts.com/samples/graphics/sand.png')"> <button style="width: 89px; margin-top: -18px;" value="Hide All"
         name="Hide All Button"
         onclick="HideAll();">Hide
         All</button><button style="width: 162px; margin-top: -18px;" value="Load More Data"
