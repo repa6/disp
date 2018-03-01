@@ -338,16 +338,13 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
 
   </head>
   <body style="                      background-color: white;">
+    <div id="big-container " style="background-image: url('http://www.highcharts.com/samples/graphics/sand.png')">
     <div id="chart-container" style="height: 600px; background-image: url('http://www.highcharts.com/samples/graphics/sand.png')"><br>
       Highstock Chart Here<br>
     </div>
-    <div id="below chart" style="background-image: url('http://www.highcharts.com/samples/graphics/sand.png')"> <button style="width: 89px; margin-top: -18px;" value="Hide All"
-        name="Hide All Button"
-        onclick="HideAll();">Hide
-        All</button><button style="width: 162px; margin-top: -18px;" value="Load More Data"
-        name="Load More Data"
-        onclick="loadOneChannel();">Load
-        More Historical Data </button>
+    <div id="below chart"> 
+    	<button style="width: 89px; margin-top: -18px;" value="Hide All" name="Hide All Button" onclick="HideAll();">Hide All</button>
+        <button style="width: 192px; margin-top: -18px;" value="Load More Data"  name="Load More Data" onclick="loadOneChannel();">Load More Historical Data </button>
       <select id="Channel Select">
       </select>
       <select id="Loads">
@@ -370,6 +367,7 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
       </select>
       <input id="Update" name="Update" type="checkbox"><span style="font-family: Lucida Grande;">Update
         Chart</span> <span id="Latency" style="font-family: Lucida Grande;">(Latency)</span>
+    </div>
     </div>
   </body>
 </html>
