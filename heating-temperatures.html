@@ -20,12 +20,10 @@ var dynamicChart;
 var channelsLoaded = 0;
 // put your ThingSpeak Channel#, Channel Name, and API keys here.
 // fieldList shows which field you want to load, and which axis to display that field on, 
-// the 'T' Temperature left axis, or the 'O' Other right axis.
+// the 'C' Temperature right axis, or the 'S' States left axis.
 var channelKeys =[];
-//Change TO: display two fields from the same channel from a Rain gauge - 15min counts, and total counts
-//  src="http://api.thingspeak.com/channels/8652/charts/3?width=1300&height=520&results=1000&dynamic=false&title=15minTotals%20(0.5mm)" ></iframe>
 channelKeys.push({channelNumber:264486, name:'Heating States',key:'8SUKRVO1YUBDBLH8',
-   fieldList:[{field:5,axis:'C'},{field:6,axis:'C'},{field:7,axis:'C'},{field:8,axis:'C'}]});
+   fieldList:[{field:1,axis:'S'},{field:2,axis:'S'},{field:3,axis:'S'},{field:4,axis:'S'},{field:5,axis:'C'},{field:6,axis:'C'},{field:7,axis:'C'},{field:8,axis:'C'}]});
     
 // user's timezone offset
 var myOffset = new Date().getTimezoneOffset();
@@ -199,58 +197,37 @@ $(document).ready(function()
 		  line: {        gapSize:5
 				//color: '#d62020'
 				//  },
-				//  bar: {
-				//color: '#d52020'
-				//  },
+				//  bar: {color: '#d52020' },
 				//  column: {
 			},
 			series: {
 			  	marker: { radius: 2},
 				animation: true,
 				step: false,
-        			turboThrehold:1000,
+        		turboThrehold:1000,
 				borderWidth: 0
 			}
 		},
     tooltip: {
-      valueDecimals: 1,
+      valueDecimals: 2,
       valueSuffix: '(0.01")',
       xDateFormat:'%Y-%m-%d<br/>%H:%M:%S %p' //bug fix
-			// reformat the tooltips so that local times are displayed
-			//formatter: function() {
+		// reformat the tooltips so that local times are displayed
+		//formatter: function() {
       //var d = new Date(this.x + (myOffset*60000));
       //var n = (this.point.name === undefined) ? '' : '<br/>' + this.point.name;
       //return this.series.name + ':<b>' + this.y + '</b>' + n + '<br/>' + d.toDateString() + '<br/>' + d.toTimeString().replace(/\(.*\)/, "");
 			//}
     },
-		xAxis: {
-		  type: 'datetime',
-      ordinal:false,
-      min: Date.UTC(2013,02,28),
-			dateTimeLabelFormats : {
-        hour: '%l %p',
-        minute: '%l:%M %p'
-      },
-      	title: {text: 'LeftAxis'}	},
-	yAxis: [{  title: 
-		{ text: 'State' },
-            	id: 'C'
-    }],
-		exporting: {
-		  enabled: true,
-      csv: {
-        dateFormat: '%d/%m/%Y %I:%M:%S %p'
-        }
-		},
-		legend: {
-		  enabled: true
-		},
-    navigator: {
-      baseSeries: 0,  //select which series to show in history navigator, First series is 0
-      series: {
-            includeInCSVExport: false
-        }
-		},    
+		xAxis: { type: 'datetime', ordinal:false,  min: Date.UTC(2013,02,28),
+				dateTimeLabelFormats : { hour: '%l %p',  minute: '%l:%M %p' },
+      			title: {text: 'LeftAxis'}	},
+		yAxis: [{ title: { text: 'States' }, id: 'S' }, { title: { text: 'Temperature' }, opposite: true, id: 'C' }],
+		exporting: { enabled: true,
+      		csv: { dateFormat: '%d/%m/%Y %I:%M:%S %p' }	},
+		legend: {  enabled: true},
+    	navigator: {  baseSeries: 0,  //select which series to show in history navigator, First series is 0
+      		series: {  includeInCSVExport: false }		},    
     series: []
     //series: [{data:[[getChartDate("2013-06-16T00:32:40Z"),75]]}]      
 	};
