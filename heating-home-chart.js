@@ -4,12 +4,12 @@ var channelsLoaded = 0;
 // fieldList shows which field you want to load, and which axis to display that field on, 
 // the 'T' Temperature left axis, or the 'O' Other right axis.
 var channelKeys =[];
-channelKeys.push({channelNumber:264486, name:'Heating',key:'8SUKRVO1YUBDBLH8',
+channelKeys.push({channelNumber:264486, name:'Heating',key:'',
    fieldList:[
       {field:1,axis:'Q'},
       {field:2,axis:'Q'},
       {field:3,axis:'Q'},
-      {field:4,axis:'Q'},
+      //{field:4,axis:'Q'},
       {field:5,axis:'T'},
       {field:6,axis:'T'},
       {field:7,axis:'T'},
@@ -21,12 +21,12 @@ function getChartDate(d) {
     return Date.UTC(d.substring(0,4), d.substring(5,7)-1, d.substring(8,10), d.substring(11,13), d.substring(14,16), d.substring(17,19)) - (myOffset * 60000);
 }   
 function HideAll(){
-  for (var index=0; index<dynamicChart.series.length; index++)  // iterate through each series
-  { 
-    if (dynamicChart.series[index].name == 'Navigator')
-      continue;
-    dynamicChart.series[index].hide();
-  }            
+	for (var index=0; index<dynamicChart.series.length; index++)  // iterate through each series
+	{ 
+		if (dynamicChart.series[index].name == 'Navigator')
+		  continue;
+		dynamicChart.series[index].hide();
+	}            
 }
 
       //  This is where the chart is generated.
@@ -67,7 +67,7 @@ $(document).ready(function()
    var fieldList= sentFieldList;
    var channelIndex = sentChannelIndex;
    // get the Channel data with a webservice call
- 	$.getJSON('https://www.thingspeak.com/channels/'+channelNumber+'/feed.json?callback=?&amp;offset=0&amp;results=2500;key='+key, function(data) 
+ 	$.getJSON('https://www.thingspeak.com/channels/'+channelNumber+'/feed.json?callback=?&amp;offset=0&amp;results=700;key='+key, function(data) 
    {
 	   // if no access
 	   if (data == '-1') {
@@ -103,17 +103,17 @@ $(document).ready(function()
  function createChart() {
 	// specify the chart options
 	var chartOptions = {
-	  chart: 
-    {
-		renderTo: 'chart-container',
-      	backgroundColor: null,
-		zoomType:'xy',
-		events: 
-		{
-	load: function() 
-        {
+		chart: 
+			{
+			renderTo: 'chart-container',
+			backgroundColor: null,
+			zoomType:'xy',
+			events: 
+			{
+			load: function() 
+			{
 				  if ('true' === 'true' && (''.length < 1 && ''.length < 1 && ''.length < 1 && ''.length < 1 && ''.length < 1)) 
-          {
+			{
             // If the update checkbox is checked, get latest data every 15 seconds and add it to the chart
 						setInterval(function() 
             {
@@ -168,23 +168,23 @@ $(document).ready(function()
 				count: 12,
 				type: 'hour',
 				text: '12H'
-      }, {
+			}, {
 				count: 1,
 				type: 'day',
 				text: 'D'
-      }, {
+			}, {
 				count: 3,
 				type: 'day',
 				text: '3D'
-      }, {
+			}, {
 				count: 1,
 				type: 'week',
 				text: 'W'
-      }, {
+			}, {
 				count: 1,
 				type: 'month',
 				text: 'M'
-      }, {
+			}, {
 				count: 1,
 				type: 'year',
 				text: 'Y'
@@ -195,81 +195,60 @@ $(document).ready(function()
 			inputEnabled: true,
 			selected: 1
 		},
-    title: {
-			text: 'this is title'
+		title: {
+			text: 'My home Heating history',
+			style: {
+				//color: 'black',
+				fontSize: '16px',
+				fontWeight: 'bold'
+			}
 		},
 		plotOptions: {
-		  line: {
-        gapSize:5
-			},
+			line: {gapSize:5},
 			series: {
-			  marker: {
-				  radius: 2
-				},
+				marker: {radius: 2},
 				animation: true,
 				step: false,
-        turboThrehold:1000,
+				turboThrehold:1000,
 				borderWidth: 0
 			}
 		},
-    tooltip: {
-      //valueDecimals: 1,
-      //valueSuffix: '°C',
-      xDateFormat:'%A, %b %e, %Y<br/>%H:%M:%S %p'
-			// reformat the tooltips so that local times are displayed
-			//formatter: function() {
-      //var d = new Date(this.x + (myOffset*60000));
-      //var n = (this.point.name === undefined) ? '' : '<br/>' + this.point.name;
-      //return this.series.name + ':<b>' + this.y + '</b>' + n + '<br/>' + d.toDateString() + '<br/>' + d.toTimeString().replace(/\(.*\)/, "");
-			//}
-    },
+		tooltip: {
+			shared: true,
+			valueDecimals: 2,
+			valueSuffix: ' ',
+			xDateFormat:'%A, %Y %b %e, <br/> %H:%M:%S'			
+		},
 		xAxis: {
-		  type: 'datetime',
-      ordinal:false,
-      min: Date.UTC(2013,02,28),
-			dateTimeLabelFormats : {
-        hour: '%l %p',
-        minute: '%l:%M %p'
-      },
-      title: {
-        text: 'test'
+			type: 'datetime',
+			min: Date.UTC(2013,02,28),
+			title: {
+				text: ''   //x axis bottom title
 			}
 		},
 		yAxis: [
                     {
                         labels: {format: '{value} °C', style: {color: "#000000"} }
                         ,title: {text: 'Temperature'}
-                        ,opposite: false
+                        //,opposite: false
                         ,id: 'T'
                     }
                     , 
                     {
                         labels: {format: '{value}', style: {color: "#000000"} }
                         ,title: {text: '' }
-                        //,opposite: true
+                        ,opposite: false
                         ,id: 'Q'
-                    }
-                    , 
-                    {
-                        labels: {format: '{value}', style: {color: "#000000"} }
-                        //,title: {text: 'Other'},
-                        //,opposite: true,
-                        ,id: 'O'
-                    }
+                    }                    
                 ],
-        tooltip: {shared: true},
-		exporting: {
-		  enabled: true,
-      csv: {
-        dateFormat: '%d/%m/%Y %I:%M:%S %p'
-        }
-		},
-	legend: {enabled: true},
-    navigator: {
-                  baseSeries: 0,  //select which series to show in history navigator, First series is 0
-                  series: {includeInCSVExport: false}
-		      },    
-    series: []     
+        scrollbar: {enabled: false},
+		exporting: {enabled: true, csv: { dateFormat: '%d/%m/%Y %I:%M:%S %p'  } },
+		legend: {enabled: true},
+		navigator: {
+					  baseSeries: 0,  //select which series to show in history navigator, First series is 0
+					  series: {includeInCSVExport: false}
+				  }, 
+		series: []     
 	};
 
 	// add all Channel data to the chart
@@ -283,13 +262,12 @@ $(document).ready(function()
                                 yAxis:channelKeys[channelIndex].fieldList[fieldIndex].axis,
                                 //visible:false,
                               name: channelKeys[channelIndex].fieldList[fieldIndex].name
-                                ,tooltip: {valueSuffix: ' '+channelKeys[channelIndex].fieldList[fieldIndex].suffix, valueDecimals: 1}
                           });
     }
   }
 	// set chart labels here so that decoding occurs properly
 	//chartOptions.title.text = data.channel.name;
-	chartOptions.xAxis.title.text = 'Date';
+	//chartOptions.xAxis.title.text = 'Date';
 
 	// draw the chart
   dynamicChart = new Highcharts.StockChart(chartOptions);
