@@ -67,7 +67,7 @@ $(document).ready(function()
    var fieldList= sentFieldList;
    var channelIndex = sentChannelIndex;
    // get the Channel data with a webservice call
- 	$.getJSON('https://www.thingspeak.com/channels/'+channelNumber+'/feed.json?callback=?&amp;offset=0&amp;results=700;key='+key, function(data) 
+ 	$.getJSON('https://www.thingspeak.com/channels/'+channelNumber+'/feed.json?&amp;offset=0&amp;results=2500;key='+key, function(data) 
    {
 	   // if no access
 	   if (data == '-1') {
