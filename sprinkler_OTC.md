@@ -11,15 +11,34 @@ A lépés: OTC token létrehozása
  2:   Miután bejelentkezett az openthings.io oldalra, látni fogja a 'műszerfalat'. A műszerfal bal oldalán kattintson a következő gombra
     'Az OpenThings eszközeim'
     Lásd az alábbi képet az illusztrációhoz.
-    NE kattintson a My OpenThings Blynk Devices (amely a My OpenThings Blynk Devices felett található), mivel az a Blynk token létrehozására szolgál, nem pedig az OTC tokenre. 
+    
+    <p align="center">
+    <img src="/pics/OTC_1.png" width=80%/>
+    </p>
+    
+   NE kattintson a My OpenThings Blynk Devices (amely a My OpenThings Blynk Devices felett található), mivel az a Blynk token létrehozására szolgál, nem pedig az OTC tokenre. 
   3:  Ezután írja be az eszköz leírását, válassza ki a legördülő listából az 'OpenSprinkler'-t, majd kattintson az Új eszköz hozzáadása gombra. Az alábbi képen látható illusztrációval egy új OpenSprinkler eszközt hoz létre, és megjelenik a fentebb bemutatott OTC token. A token 32 karakter hosszú. Ezt a tokent kell bemásolnia és beillesztenie az OpenSprinkler beállításaiba (lásd alább).
-
+    
+    <p align="center">
+    <img src="/pics/OTC_2.png" width=80%/>
+    </p>
+    
 B. lépés: Az OpenSprinkler beállításainak frissítése
 
   1:  Az OpenSprinkler készülék beállításait meg kell változtatnia, hogy engedélyezze az OTC tokent. Ehhez nyisson meg egy böngészőt, és írja be a készülék IP-címét, ennek meg kell jelenítenie a webes felhasználói felületet.
   2:  Kattintson a jobb alsó sarokban lévő ikonra a "Beállítások szerkesztése" menüponthoz, majd kattintson az "Integráció" fülre. Válassza az Engedélyezés lehetőséget. Ezután másolja/illessze be a teljes OTC-tokenjét a Token mezőbe. Az alapértelmezett OTC szerver a ws.cloud.openthings.io, az alapértelmezett port pedig a 80-as. Ezeket változatlanul hagyhatja. Lásd az alábbi képet az illusztrációhoz.
   3:  Küldje el a módosításokat, és végül indítsa újra az OpenSprinklerét. Most már minden készen áll.
+    
+    <p align="center">
+    <img src="/pics/OTC_3.png" width=80%/>
+    </p>
+    
   4:  Annak ellenőrzéséhez, hogy az OTC cloud kapcsolat érvényes-e, a vezérlő újraindítása után a kezdőlapon balról jobbra húzva (vagy a bal felső sarokban lévő ikonra kattintva) nyissa meg a bal oldali menüt, majd kattintson a 'Rendszerdiagnosztika' menüpontra. A panel alján az OTC állapota látható. Ha azt mutatja, hogy 'Connected', az azt jelenti, hogy a kapcsolat sikeres. Ha azt mutatja, hogy 'Connecting...', akkor 30 másodpercig várjon, és ellenőrizze újra. Ha az OTC nincs engedélyezve, az állapot a 'Not enabled' (Nem engedélyezve), vagy a 'Disconnected' (Megszakítva), ha a kapcsolat valamilyen oknál fogva meghiúsult. Lásd az alábbi képet az illusztrációhoz.
+    
+    <p align="center">
+    <img src="/pics/OTC_4.png" width=80%/>
+    </p>
+    
 
 C. lépés: Az OTC Token használata távoli hozzáféréshez
 
