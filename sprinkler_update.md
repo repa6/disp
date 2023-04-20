@@ -1,3 +1,5 @@
+OpenSprinkler 3.x (OS3) OTA (Over-the-Air) firmware frissítés.
+
 0:  Mielőtt továbblépne, győződjön meg róla, hogy az OpenSprinkler aktuális konfigurációit exportálja egy fájlba (vagy az alkalmazásba), hogy később importálni tudja azokat. Frissítse a mobilalkalmazást a legújabb verzióra (ha közvetlenül a webböngészőn keresztül fér hozzá a vezérlőhöz, akkor már készen áll, mivel az már frissítve van). Ezután:
 
 1:   Töltse le a legfrissebb firmware-t (.bin fájlformátumban): http://raysfiles.com/os_compiled_firmware/v3.x/os_220_rev1.bin
