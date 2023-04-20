@@ -30,13 +30,13 @@ B. lépés: Az OpenSprinkler beállításainak frissítése
   3:  Küldje el a módosításokat, és végül indítsa újra az OpenSprinklerét. Most már minden készen áll.
     
    <p align="center">
-   <img src="/pics/OTC_3.png" width=80%/>
+   <img src="/pics/OTC_3.png" width=20%/>
    </p>
     
   4:  Annak ellenőrzéséhez, hogy az OTC cloud kapcsolat érvényes-e, a vezérlő újraindítása után a kezdőlapon balról jobbra húzva (vagy a bal felső sarokban lévő ikonra kattintva) nyissa meg a bal oldali menüt, majd kattintson a 'Rendszerdiagnosztika' menüpontra. A panel alján az OTC állapota látható. Ha azt mutatja, hogy 'Connected', az azt jelenti, hogy a kapcsolat sikeres. Ha azt mutatja, hogy 'Connecting...', akkor 30 másodpercig várjon, és ellenőrizze újra. Ha az OTC nincs engedélyezve, az állapot a 'Not enabled' (Nem engedélyezve), vagy a 'Disconnected' (Megszakítva), ha a kapcsolat valamilyen oknál fogva meghiúsult. Lásd az alábbi képet az illusztrációhoz.
     
    <p align="center">
-   <img src="/pics/OTC_4.png" width=80%/>
+   <img src="/pics/OTC_4.png" width=20%/>
    </p>
     
 
