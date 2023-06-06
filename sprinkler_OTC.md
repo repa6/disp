@@ -13,7 +13,7 @@ A lépés: OTC token létrehozása
     Lásd az alábbi képet az illusztrációhoz.
     
    <p align="center">
-   ![image 1](https://repa6.github.io/disp/assets/images/OTC_1.png)
+   <img src="https://repa6.github.io/disp/pics/OTC_1.png" width=80%/>
    </p>
     
    NE kattints a "My OpenThings Blynk Devices" (amely a My OpenThings Blynk Devices felett található), mivel az a Blynk token létrehozására szolgál, nem pedig az OTC tokenre. 
