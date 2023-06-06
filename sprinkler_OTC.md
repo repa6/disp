@@ -2,7 +2,7 @@ OpenSprinkler távoli hozzáférés az OpenThings Cloud (OTC) Token használatá
 
 Bevezetés
 
-A 2.2.0 firmware-től az OpenSprinkler 3.x támogatja a távoli hozzáférést OpenThings Cloud (OTC) tokenen keresztül. Ez kiküszöböli a porttovábbítás szükségességét (amelyet egyes routerek, különösen a mobil routerek esetében nehéz beállítani). A folytatás előtt győződj meg róla, hogy az OpenSprinkler firmware 2.2.0 vagy magasabb verziószámú. Ha nem, akkor kövesd az <a href="https://github.com/repa6/disp/blob/master/sprinkler_update.md"> itt található utasításokat </a> a firmware 2.2.0-ra történő frissítéséhez. Az alábbi utasítások elmagyarázzák, hogyan hozz létre egy OTC tokent, és hogyan használd az OTC tokent a távoli hozzáféréshez.
+A 2.2.0 firmware-től az OpenSprinkler 3.x támogatja a távoli hozzáférést OpenThings Cloud (OTC) tokenen keresztül. Ez kiküszöböli a porttovábbítás szükségességét (amelyet egyes routerek, különösen a mobil routerek esetében nehéz beállítani). A folytatás előtt győződj meg róla, hogy az OpenSprinkler firmware 2.2.0 vagy magasabb verziószámú. Ha nem, akkor kövesd az <a href="https://repa6.github.io/disp/sprinkler_update"> itt található utasításokat </a> a firmware 2.2.0-ra történő frissítéséhez. Az alábbi utasítások elmagyarázzák, hogyan hozz létre egy OTC tokent, és hogyan használd az OTC tokent a távoli hozzáféréshez.
 
 A lépés: OTC token létrehozása
 
@@ -13,14 +13,14 @@ A lépés: OTC token létrehozása
     Lásd az alábbi képet az illusztrációhoz.
     
    <p align="center">
-   <img src="/pics/OTC_1.png" width=80%/>
+   <img src="https://repa6.github.io/disp/pics/OTC_1.png" width=80%/>
    </p>
     
    NE kattints a "My OpenThings Blynk Devices" (amely a My OpenThings Blynk Devices felett található), mivel az a Blynk token létrehozására szolgál, nem pedig az OTC tokenre. 
   3:  Ezután írjd be az eszköz leírását, válaszd ki a legördülő listából az 'OpenSprinkler'-t, majd kattints az Új eszköz hozzáadása gombra. Ahogy az alábbi képen látható, egy új OpenSprinkler eszközt hoz létre, és megjelenik a fentebb bemutatott OTC token. A token 32 karakter hosszú. Ezt a tokent kell bemásolni és beilleszteni az OpenSprinkler beállításaiba (lásd alább).
     
    <p align="center">
-   <img src="/pics/OTC_2.png" width=80%/>
+   <img src="https://repa6.github.io/disp/pics/OTC_2.png" width=80%/>
    </p>
     
 B. lépés: Az OpenSprinkler beállításainak frissítése
@@ -30,13 +30,13 @@ B. lépés: Az OpenSprinkler beállításainak frissítése
   3:  Mentsd el a módosításokat, és végül indítsd újra az OpenSprinklert. Most már minden készen áll.
     
    <p align="center">
-   <img src="/pics/OTC_3.png" width=20%/>
+   <img src="https://repa6.github.io/disp/pics/OTC_3.png" width=20%/>
    </p>
     
   4:  Annak ellenőrzéséhez, hogy az OTC cloud kapcsolat érvényes-e, a vezérlő újraindítása után a kezdőlapon balról jobbra húzva (vagy a bal felső sarokban lévő ikonra kattintva) nyisd meg a bal oldali menüt, majd kattints a 'Rendszerdiagnosztika' menüpontra. A panel alján az OTC állapota látható. Ha azt mutatja, hogy 'Connected', az azt jelenti, hogy a kapcsolat sikeres. Ha azt mutatja, hogy 'Connecting...', akkor 30 másodpercig várj, és ellenőrizze újra. Ha az OTC állapot 'Not enabled' (Nem engedélyezve), vagy 'Disconnected' (Megszakítva), a kapcsolat valamilyen oknál fogva meghiúsult. Lásd az alábbi képet.
     
    <p align="center">
-   <img src="/pics/OTC_4.png" width=20%/>
+   <img src="https://repa6.github.io/disp/pics/OTC_4.png" width=20%/>
    </p>
     
 
